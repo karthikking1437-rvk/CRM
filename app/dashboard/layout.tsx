@@ -1,6 +1,3 @@
-import { auth } from '@/lib/auth'
-import { headers } from 'next/headers'
-import { redirect } from 'next/navigation'
 import { Sidebar } from '@/components/dashboard/sidebar'
 import { Header } from '@/components/dashboard/header'
 import { ThemeProvider } from 'next-themes'
@@ -15,12 +12,6 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await auth.api.getSession({ headers: await headers() })
-
-  if (!session?.user) {
-    redirect('/sign-in')
-  }
-
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
       <div className="flex">

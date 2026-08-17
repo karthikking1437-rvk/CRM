@@ -1,17 +1,8 @@
-import { auth } from '@/lib/auth'
-import { headers } from 'next/headers'
-import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, BarChart3, MessageSquare, Phone, Calendar } from 'lucide-react'
 
-export default async function HomePage() {
-  const session = await auth.api.getSession({ headers: await headers() })
-
-  if (session?.user) {
-    redirect('/dashboard')
-  }
-
+export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -30,20 +21,12 @@ export default async function HomePage() {
             <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Pricing
             </a>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/sign-in"
-                className="text-sm font-medium text-foreground hover:text-accent transition-colors"
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/sign-up"
-                className="text-sm font-medium px-4 py-2 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors"
-              >
-                Get Started
-              </Link>
-            </div>
+            <Link
+              href="/dashboard"
+              className="text-sm font-medium px-4 py-2 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors"
+            >
+              Open Dashboard
+            </Link>
           </nav>
         </div>
       </header>
@@ -62,8 +45,8 @@ export default async function HomePage() {
             clinics, salons, gyms, restaurants, and local businesses.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/sign-up" className="text-base font-medium px-8 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors flex items-center gap-2">
-              Start Free Trial <ArrowRight className="w-4 h-4" />
+            <Link href="/dashboard" className="text-base font-medium px-8 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors flex items-center gap-2">
+              Open Dashboard <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="#features"
@@ -123,10 +106,10 @@ export default async function HomePage() {
             Join hundreds of businesses already using Bazawada AI to save time and serve customers better.
           </p>
           <Link
-            href="/sign-up"
+            href="/dashboard"
             className="inline-block px-8 py-3 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/90 transition-colors"
           >
-            Start Your Free Trial
+            Open Dashboard
           </Link>
         </div>
       </section>
